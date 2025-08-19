@@ -237,29 +237,24 @@
 </li>
 
 
-{% comment %} <li class="submenu">
-<a href="javascript:void(0);"><img src="{% static 'assets/img/icons/sales1.svg' %}" alt="img"><span>Expense</span> <span class="menu-arrow"></span></a>
+ <li class="submenu">
+<a href="javascript:void(0);"><img src="{% static 'assets/img/icons/sales1.svg' %}" alt="img"><span>Blog</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="">Add Expense</a></li>
-<li><a href="">Display Expense</a></li>
+<li><a href="{% url 'add_blog' %}">Add Blog</a></li>
+<li><a href="{% url 'view_blog' %}">Display Blog</a></li>
 </ul>
 </li>
 
 
 <li class="submenu">
-<a href="javascript:void(0);"><img src="{% static 'assets/img/icons/return1.svg' %}" alt="img"><span> Return</span> <span class="menu-arrow"></span></a>
+<a href="javascript:void(0);"><img src="{% static 'assets/img/icons/return1.svg' %}" alt="img"><span>Testimonial</span> <span class="menu-arrow"></span></a>
 <ul>
-<li><a href="">Sales Return List</a></li>
-<li><a href="">Add Sales Return </a></li>
+<li><a href="">Add Testimonial</a></li>
+<li><a href="">View Testimonial </a></li>
 </ul>
-</li> {% endcomment %}
+</li> 
 
-{% comment %} <li class="submenu">
-<a href="javascript:void(0);"><img src="{% static 'assets/img/icons/purchase1.svg' %}" alt="img"><span> Stock Balance</span> <span class="menu-arrow"></span></a>
-<ul>
-<li><a href="">Stock Balance</a></li>
-</ul>
-</li> {% endcomment %}
+
 
 <li class="submenu">
 <a href="javascript:void(0);"><img src="{% static 'assets/img/icons/users1.svg' %}" alt="img"><span> People</span> <span class="menu-arrow"></span></a>
