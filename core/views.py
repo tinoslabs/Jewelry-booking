@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse,get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm,AdminCreateForm
-from .models import UserProfile
+from .forms import UserRegisterForm,AdminCreateForm,BlogForm
+from .models import UserProfile,Blog
 from core.models import User
 
 from admin_panel.forms import CustomerForm,EmployeeCreateForm
@@ -36,6 +36,7 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('login') 
+
 @login_required
 def dashboard(request):
     try:
@@ -70,6 +71,40 @@ def dashboard(request):
 
     return HttpResponse("Something went wrong.")
 
+
+def add_blog(request):
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('view_blog') 
+    else:
+        form = BlogForm()
+
+    return render(request, 'core/add_blog.html', {'form': form})
+
+
+def view_blog(request):
+    blog = Blog.objects.all().order_by('-id')
+    return render(request,'core/view_blog.html',{'blog':blog})
+
+
+def update_blog(request, id):
+    blog = get_object_or_404(Blog, id=id) 
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES, instance=blog)
+        if form.is_valid():
+            form.save()
+            return redirect('view_blog')
+    else:
+        form = BlogForm(instance=blog)
+    return render(request, 'core/update_blog.html', {'form': form, 'blog': blog})
+
+
+def delete_blog(request,id):
+    blog = Blog.objects.get(id=id)
+    blog.delete()
+    return redirect('view_blog')
 
 # @login_required
 # def dashboard(request):

@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from inventory.forms import CategoryForm, SubCategoryForm, ProductForm
 from inventory.models import Category, SubCategory, Product,ProductImage
 from django.db.models import Prefetch
-
+from core.models import UserProfile, Blog
+from core.forms import UserProfile, BlogForm
 # Create your views here.
 
 # def index(request):
@@ -12,8 +13,9 @@ from django.db.models import Prefetch
 
 def index(request):
     categories = Category.objects.all()
-    # Get all unique subcategory names
+    
     subcategories = SubCategory.objects.values_list('name', flat=True).distinct()
+    blogs = Blog.objects.all()
 
     # Build dictionary of subcategory name → products
     subcategory_products = {}
@@ -23,14 +25,20 @@ def index(request):
         subcategory_products[sub_name] = products
 
     return render(request, 'subcategory_products.html', {'categories': categories,
-        'subcategory_products': subcategory_products
+        'subcategory_products': subcategory_products, 'blogs': blogs,
     })
+
+def index(request):
+    datas = Product.objects.all()
+    return render(request, 'index.html',{'datas': datas})
 
 
 def index(request):
     categories = Category.objects.all()
+    datas = Product.objects.all()
     # Step 1: Get unique subcategory names
     unique_names = SubCategory.objects.values_list('name', flat=True).distinct()
+    blogs = Blog.objects.all()
 
     # Step 2: Create a list of "virtual" subcategory objects with merged products
     subcategory_groups = []
@@ -47,7 +55,7 @@ def index(request):
         group.products = products
         subcategory_groups.append(group)
 
-    return render(request, 'index.html', {'categories': categories,'subcategories': subcategory_groups})
+    return render(request, 'index.html', {'categories': categories,'subcategories': subcategory_groups,'blogs': blogs,'datas': datas})
 
 
 def product_details(request):
