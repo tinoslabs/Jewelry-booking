@@ -1,0 +1,14 @@
+{% block content %}
+<h2>Manage Customers</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Customer</button>
+</form>
+
+<ul>
+    {% for c in customers %}
+        <li>{{ c.name }} - {{ c.email }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

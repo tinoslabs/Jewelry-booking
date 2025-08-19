@@ -1,0 +1,63 @@
+/*------- Buttons Style here -------*/
+.btn {
+    font-size: 14px;
+    color: $white;
+    line-height: 1;
+    &-text {
+        color: $black-soft;
+        font-size: 16px;
+        position: relative;
+        pointer-events: visible;
+        text-transform: capitalize;
+        &:before {
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            content: '';
+            position: absolute;
+            background-color: $black-soft;
+        }
+        &:hover {
+            color: $theme-color;
+            &:before {
+                background-color: $theme-color;
+            }
+        }
+    }
+    &-cart {
+        color: $white;
+        padding: 12px 25px;
+        background-color: $bg-dark-soft;
+        border-radius: 30px;
+        text-transform: capitalize;
+        box-shadow: 0 2px 1px 0.5px rgba(0,0,0,0.05);
+        &:hover {
+            color: $white;
+            background-color: $theme-color;
+        }
+    }
+    &-cart2 {
+        height: 40px;
+        color: $white;
+        line-height: 40px;
+        border-radius: 50px;
+        padding: 0 25px;
+        background-color: $theme-color;
+        &:hover {
+            color: $black-soft;
+            background-color: $white;
+        }
+    }
+    &-sqr {
+        color: $white;
+        font-size: 15px;
+        border-radius: 0;
+        background-color: $theme-color;
+        padding: 12px 25px;
+        &:hover {
+            color: $black-soft;
+            background-color: $white;
+        }
+    }
+}

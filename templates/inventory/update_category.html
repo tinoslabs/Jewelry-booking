@@ -1,0 +1,64 @@
+
+
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block content %}
+<div class="page-wrapper">
+<div class="content">
+<div class="page-header">
+<div class="page-title">
+<h4>Update Product</h4>
+<h6>Create new product Category</h6>
+</div>
+</div>
+
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h2 class="mb-4">Update Category - {{ category.name }}</h2>
+        {% comment %} <form method="post">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+                <label for="id_name">Category Type</label>
+                {{ form.name }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="id_description">Description</label>
+                {{ form.description }}
+            </div>
+            <button type="submit" class="btn btn-success">Update Category</button>
+            <a href="{% url 'view_categories' %}" class="btn btn-secondary">Cancel</a>
+        </form> {% endcomment %}
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-group mb-3">
+                <label for="id_name">Category Type</label>
+                {{ form.name }}
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="id_description">Description</label>
+                {{ form.description }}
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="id_image">Category Image</label>
+                {{ form.image }}
+                {% if category.image %}
+                    <div class="mt-2">
+                        <p>Current Image:</p>
+                        <img src="{{ category.image.url }}" alt="Current Image" style="width: 100px; height: 100px; object-fit: cover;">
+                    </div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn btn-success">Update Category</button>
+            <a href="{% url 'view_categories' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+

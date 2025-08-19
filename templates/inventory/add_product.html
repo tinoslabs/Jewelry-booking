@@ -1,0 +1,201 @@
+
+
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="page-wrapper">
+<div class="content">
+<div class="page-header">
+<div class="page-title">
+<h4>Product Add</h4>
+<h6>Create new product</h6>
+</div>
+</div>
+
+{% comment %} <div class="card">
+<div class="card-body">
+<div class="row">
+<div class="col-lg-3 col-sm-6 col-12">
+<div class="form-group">
+<label>Product Name</label>
+<input type="text" name="name" class="form-control" placeholder="Enter product name">
+</div>
+</div>
+<div class="col-lg-3 col-sm-6 col-12">
+<div class="form-group">
+<label>Category</label>
+<select class="select">
+<option>Choose Category</option>
+<option>Computers</option>
+</select>
+</div>
+</div>
+<div class="col-lg-3 col-sm-6 col-12">
+<div class="form-group">
+<label>Sub Category</label>
+<select class="select">
+<option>Choose Sub Category</option>
+<option>Fruits</option>
+</select>
+</div>
+</div>
+
+<div class="col-lg-3 col-sm-6 col-12">
+<div class="form-group">
+<label>Price</label>
+<input type="text">
+</div>
+</div>
+
+<div class="col-lg-3 col-sm-6 col-12">
+<div class="form-group">
+<label>Stock</label>
+<input type="text">
+</div>
+</div>
+
+<div class="col-lg-12">
+<div class="form-group">
+<label>Description</label>
+<textarea class="form-control"></textarea>
+</div>
+</div>
+
+
+
+<div class="col-lg-12">
+<div class="form-group">
+<label> Product Image</label>
+<div class="image-upload">
+<input type="file">
+<div class="image-uploads">
+<img src="assets/img/icons/upload.svg" alt="img">
+<h4>Drag and drop a file to upload</h4>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-12">
+<a href="javascript:void(0);" class="btn btn-submit me-2">Submit</a>
+<a href="productlist.html" class="btn btn-cancel">Cancel</a>
+</div>
+</div>
+</div>
+</div> {% endcomment %}
+
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" name="name" class="form-control" placeholder="Enter product name" value="{{ product.name|default_if_none:'' }}">
+          </div>
+        </div>
+
+        
+        <div class="col-lg-3 col-sm-6 col-12">
+        <div class="form-group">
+            <label>Category</label>
+            <select name="category" class="form-control" id="category-select">
+            <option value="">Choose Category</option>
+            {% for cat in categories %}
+                <option value="{{ cat.id }}">{{ cat.name }}</option>
+            {% endfor %}
+            </select>
+        </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6 col-12">
+        <div class="form-group">
+            <label>Sub Category</label>
+            <select name="subcategory" class="form-control" id="subcategory-select">
+            <option value="">Choose Sub Category</option>
+            </select>
+        </div>
+        </div>
+
+
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="form-group">
+            <label>Price</label>
+            <input type="text" name="price" class="form-control" placeholder="Enter price" value="{{ product.price|default_if_none:'' }}">
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="form-group">
+            <label>Stock</label>
+            <input type="text" name="stock" class="form-control" placeholder="Enter stock quantity" value="{{ product.stock|default_if_none:'' }}">
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" class="form-control" rows="3">{{ product.description|default_if_none:'' }}</textarea>
+          </div>
+        </div>
+
+       
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label>Product Images</label>
+            <div class="image-upload">
+              <input type="file" name="product_images" multiple>
+              <div class="image-uploads">
+                <img src="{% static 'assets/img/icons/upload.svg' %}" alt="upload">
+                <h4>Drag and drop files to upload</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <button type="submit" class="btn btn-submit me-2">Submit</button>
+          <a href="" class="btn btn-cancel">Cancel</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>
+
+
+</div>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $('#category-select').on('change', function () {
+    var categoryId = $(this).val();
+    if (categoryId) {
+      $.ajax({
+        url: '{% url "get_subcategories" %}',
+        data: {
+          'category_id': categoryId
+        },
+        dataType: 'json',
+        success: function (data) {
+          var subcategorySelect = $('#subcategory-select');
+          subcategorySelect.empty();
+          subcategorySelect.append('<option value="">Choose Sub Category</option>');
+          $.each(data, function (index, subcat) {
+            subcategorySelect.append('<option value="' + subcat.id + '">' + subcat.name + '</option>');
+          });
+        }
+      });
+    } else {
+      $('#subcategory-select').html('<option value="">Choose Sub Category</option>');
+    }
+  });
+</script>
+
+
+
+{% endblock %}

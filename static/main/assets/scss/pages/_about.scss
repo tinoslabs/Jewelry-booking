@@ -1,0 +1,149 @@
+/*------- about us area start -------*/
+.about {
+    &-thumb {
+        // responsive
+        @media #{$md-device} {
+            text-align: center;
+        }
+        @media #{$sm-device} {
+            text-align: center;
+            img {
+                width: 100%;
+            }
+        }
+    }
+    &-title {
+        font-size: 48px;
+        color: #d1d1d1;
+        display: block;
+        line-height: 1.1;
+        margin-bottom: 38px;
+        // responsive
+        @media #{$sm-device} {
+            font-size: 26px;
+            color: $white;
+            margin-bottom: 25px;
+        }
+    }
+    &-sub-title {
+        line-height: 1.5;
+        padding-bottom: 20px;
+        // responsive
+        @media #{$sm-device} {
+            font-size: 16px;
+        }
+    }
+    &-content {
+        @media #{$md-device, $sm-device} {
+            text-align: center;
+            padding: 52px 30px 0;
+            margin-bottom: -6px;
+        }
+        @media #{$xxs-device} {
+            padding: 52px 0 0 0;
+        }
+        p {
+            font-size: 15px;
+            line-height: 1.8;
+            padding-bottom: 12px;
+            &:last-child {
+                padding-bottom: 0;
+            }
+        }
+    }
+}
+/*------- about us area end -------*/
+
+/*-------- choosing area start --------*/
+.choosing-area {
+    margin-bottom: -4px;
+}
+.single-choose-item  {
+    @media #{$sm-device} {
+        padding: 0 20px;
+    }
+    i {
+        color: #969ca7;
+        font-size: 44px;
+        transition: 0.4s;
+    }
+    h4 {
+        color: $white;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 15px 0 10px;
+        text-transform: capitalize;
+    }
+    &:hover {
+        i {
+            color: $theme-color;
+        }
+    }
+}
+/*-------- choosing area end --------*/
+
+/*------- team area start -------*/
+.team-member {
+    transition: 0.4s;
+    .team-thumb {
+        position: relative;
+        text-align: center;
+        overflow: hidden;
+        img {
+            width: 100%;
+        }
+        .team-social {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 0;
+            position: absolute;
+            background-color: $bg-dark-soft;
+            transform: translateY(100%);
+            transition: 0.4s;
+            opacity: 0;
+            visibility: hidden;
+            a {
+                color: $white;
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
+                display: inline-block;
+                text-align: center;
+                line-height: 30px;
+                background-color: $bg-dark;
+                border-radius: 5px;
+                margin-right: 5px;
+                &:hover {
+                    color: $white;
+                    background-color: $theme-color;
+                    border-color: $theme-color;
+                }
+            }
+        }
+    }
+    .team-content {
+        .team-member-name {
+            padding-top: 15px;
+        }
+        p {
+            font-size: 14px;
+            line-height: 1;
+            padding-top: 5px;
+            color: $theme-color;
+        }
+    }
+    &:hover {
+        .team-social {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0); 
+        }
+        .team-thumb {
+            img {
+               opacity: 0.5;
+            }
+        }
+    }
+}
+/*------- team area end -------*/

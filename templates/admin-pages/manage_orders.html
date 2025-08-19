@@ -1,0 +1,15 @@
+
+{% block content %}
+<h2>Manage Orders</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Order</button>
+</form>
+
+<ul>
+    {% for o in orders %}
+        <li>{{ o.product.name }} - {{ o.quantity }} - {{ o.status }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

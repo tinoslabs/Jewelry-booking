@@ -1,0 +1,88 @@
+
+
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block content %}
+<div class="page-wrapper">
+<div class="content">
+<div class="page-header">
+<div class="page-title">
+<h4> Add Featured Product</h4>
+<h6>Create New Featured Products</h6>
+</div>
+</div>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+
+                        <!-- Product Dropdown -->
+                        <div class="col-lg-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Featured Product</label>
+                                <select name="product" class="select form-control" required>
+                                    <option value="">Choose Product</option>
+                                    {% for product in products %}
+                                        <option value="{{ product.id }}"
+                                            {% if featured_product and featured_product.product.id == product.id %}
+                                                selected
+                                            {% endif %}
+                                        >
+                                            {{ product.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Submit & Cancel -->
+                        <div class="col-lg-12">
+                            <button type="submit" class="btn btn-submit me-2">
+                                {% if featured_product %}Update{% else %}Submit{% endif %}
+                            </button>
+                            <a href="{% url 'view_featured_products' %}" class="btn btn-cancel">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+{% comment %} <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+
+                <!-- Category Dropdown -->
+                <div class="col-lg-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Featured Product</label>
+                        <select name="" class="select form-control">
+                            <option value="">Choose Product</option>
+                           
+                                <option value=""></option>
+                            
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Subcategory Name -->
+                
+
+                <!-- Submit Button -->
+                <div class="col-lg-12">
+                    <button type="submit" class="btn btn-submit me-2">Submit</button>
+                    <a href="{% url 'view_subcategories' %}" class="btn btn-cancel">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form> {% endcomment %}
+
+
+</div>
+</div>
+</div>
+{% endblock %}

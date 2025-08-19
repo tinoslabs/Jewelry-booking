@@ -1,0 +1,107 @@
+/*------ banner statistics style start ------*/
+/* 1.0 banner statistics */
+
+.banner {
+    &-statistics {
+        position: relative;
+        img {
+            width: 100%;
+        }
+        &:hover {
+            img {
+                opacity: 0.7;
+            }
+        }
+    }
+    &-content {
+        right: 55px;
+        top: 50%;
+        position: absolute;
+        pointer-events: none;
+        transform: translateY(-50%);
+        // responsive
+        @media #{$md-device} {
+            right: 30px;
+        }
+        @media #{$sm-device} {
+            right: 20px;
+        }
+        @media #{$xs-device} {
+            right: 55px;
+        }
+        @media #{$xxs-device} {
+            right: 20px;
+        }
+        &_style2 {
+            left: 40px;
+            top: auto;
+            bottom: 40px;
+            transform: translateY(0);
+            .banner-text3 {
+                transition: 0.4s;
+                a {
+                    color: $black-soft;
+                    pointer-events: visible;
+                    &:hover {
+                        color: $theme-color;
+                    }
+                }
+            }
+        }
+        &_style3 {
+            left: 40px;
+            right: auto;
+        }
+    }
+    &-text1 {
+        font-size: 15px;
+        line-height: 1.1;
+        padding-bottom: 15px;
+        color: $black-soft;
+        text-transform: uppercase;
+        // responsive
+        @media #{$sm-device} {
+            font-size: 14px;
+            padding-bottom: 10px;
+        }
+        @media #{$xs-device} {
+            font-size: 15px;
+            padding-bottom: 15px;
+        }
+        @media #{$xxs-device} {
+            font-size: 14px;
+            padding-bottom: 10px;
+        }
+    }
+    &-text2 {
+        color: $black-soft;
+        padding-bottom: 34px;
+        transition: 0.4s;
+        span {
+            display: block;
+            // responsive
+            @media #{$sm-device, $xxs-device} {
+                display: inline-block;
+            }
+        }
+        // responsive
+        @media #{$md-device} {
+            font-size: 20px;
+            padding-bottom: 15px;
+        }
+        @media #{$sm-device} {
+            font-size: 17px;
+            padding-bottom: 10px;
+        }
+        @media #{$xs-device} {
+            font-size: 25px;
+            padding-bottom: 34px;
+        }
+        @media #{$xxs-device} {
+            font-size: 17px;
+            padding-bottom: 10px;
+        }
+    }
+}
+
+/*------ banner statistics style end ------*/

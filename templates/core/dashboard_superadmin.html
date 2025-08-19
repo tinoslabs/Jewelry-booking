@@ -1,0 +1,12 @@
+
+
+
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+
+<h1>Super Admin Dashboard</h1>
+<a href="{% url 'create_admin' %}">Create New Admin (Manager)</a>
+<p>Manage admins, view logs</p>
+
+{% endblock %}

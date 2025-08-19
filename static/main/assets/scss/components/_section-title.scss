@@ -1,0 +1,80 @@
+/*------ section title start ------*/
+.section-title {
+    margin-top: -7px;
+    margin-bottom: 37px;
+
+    .title {
+        text-transform: capitalize;
+        background: linear-gradient(90deg, #c29958, #fff, #c29958);
+        background-repeat: no-repeat;
+        background-size: 90%;
+        animation: shine 3s linear infinite;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: rgba(255, 255, 255, 0);
+
+        // responsive
+        @media #{$sm-device} {
+            font-size: 26px;
+        }
+    }
+
+    .sub-title {
+        font-size: 15px;
+        padding-top: 6px;
+        color: $paragraph;
+    }
+}
+
+@keyframes shine {
+    0% {
+        background-position: -500%;
+    }
+
+    100% {
+        background-position: 100%;
+    }
+}
+
+.section-title-append {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-top: -4px;
+    margin-bottom: 18px;
+    line-height: 1;
+
+    &:after {
+        top: 50%;
+        right: 0;
+        width: 100%;
+        height: 1px;
+        content: "";
+        position: absolute;
+        background-color: $bdr-color;
+        transform: translateY(-50%);
+        z-index: 1;
+        margin-top: -3px;
+
+        // responsive
+        @media #{$md-device} {
+            margin-top: 2px;
+        }
+    }
+
+    h4 {
+        display: inline-block;
+        line-height: 1;
+        text-transform: capitalize;
+        background-color: $bg-dark;
+        position: relative;
+        z-index: 2;
+        padding-right: 5px;
+
+        // responsive
+        @media #{$lg-device} {
+            font-size: 16px;
+        }
+    }
+}
+
+/*------ section title end ------*/

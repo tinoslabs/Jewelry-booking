@@ -1,0 +1,176 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="page-wrapper">
+<div class="content">
+<div class="page-header">
+<div class="page-title">
+<h4>Group Permissions</h4>
+<h6>Manage Group Permissions</h6>
+</div>
+<div class="page-btn">
+<a class="btn btn-added" href="{% url 'create_permission' %}"><img src="{% static 'assets/img/icons/plus.svg' %}" alt="img" class="me-1">Add Group Permission</a>
+</div>
+</div>
+
+<div class="card">
+<div class="card-body">
+<div class="table-top">
+<div class="search-set">
+<div class="search-input">
+<a class="btn btn-searchset"><img src="{% static 'assets/img/icons/search-white.svg' %}" alt="img"></a>
+</div>
+</div>
+<div class="wordset">
+<ul>
+<li>
+<a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img src="{% static 'assets/img/icons/pdf.svg' %}" alt="img"></a>
+</li>
+<li>
+<a data-bs-toggle="tooltip" data-bs-placement="top" title="excel"><img src="{% static 'assets/img/icons/excel.svg' %}" alt="img"></a>
+</li>
+<li>
+<a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img src="{% static 'assets/img/icons/printer.svg' %}" alt="img"></a>
+</li>
+</ul>
+</div>
+</div>
+<div class="table-responsive">
+
+
+{% comment %} <table class="table datanew">
+    <thead>
+        <tr>
+            <th><input type="checkbox"></th>
+            <th>Role</th>
+            <th>Permission List</th>
+            <th>Status</th>
+            <th class="text-end">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>{{ item.role_name }}</td>
+            <td>
+                {% for perm in item.permissions %}
+                    <span class="badge bg-info text-dark me-1">{{ perm }}</span>
+                {% empty %}
+                    <span class="text-muted">No Permissions</span>
+                {% endfor %}
+            </td>
+            <td><span class="badges bg-lightgreen">{{ item.status }}</span></td>
+            <td class="text-end">
+                <a class="me-3" href="#">
+                    <img src="{% static 'assets/img/icons/edit.svg' %}" alt="edit">
+                </a>
+
+                <a class="me-3 confirm-text" href="{% url 'delete_role' item.role_id %}" onclick="return confirm('Are you sure you want to delete this role?');">
+                    <img src="{% static 'assets/img/icons/delete.svg' %}" alt="delete">
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" class="text-center">No roles with permissions found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table> {% endcomment %}
+
+<table class="table datanew">
+    <thead>
+        <tr>
+            <th><input type="checkbox"></th>
+            <th>Role</th>
+            <th>Permission List</th>
+            <th>Status</th>
+            <th class="text-end">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>{{ item.role_name }}</td>
+            <td>
+                {% if item.permissions %}
+                    {% for perm in item.permissions %}
+                        <span class="badge bg-info text-dark me-1">{{ perm }}</span>
+                    {% endfor %}
+                {% else %}
+                    <span class="text-muted">No Permissions</span>
+                {% endif %}
+            </td>
+            <td><span class="badges bg-lightgreen">{{ item.status }}</span></td>
+            <td class="text-end">
+                <a class="me-3" href="{% url 'edit_role_permissions' item.role_id %}">
+                    <img src="{% static 'assets/img/icons/edit.svg' %}" alt="edit">
+                </a>
+                <a class="me-3 confirm-text" href="{% url 'delete_role' item.role_id %}"
+                onclick="return confirm('Are you sure you want to delete this role and its permissions?');">
+                    <img src="{% static 'assets/img/icons/delete.svg' %}" alt="delete">
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" class="text-center">No roles with permissions found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% comment %} <table class="table datanew">
+    <thead>
+        <tr>
+            <th><input type="checkbox"></th>
+            <th>Role</th>
+            <th>Permission List</th>
+            <th>Status</th>
+            <th class="text-end">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>{{ item.role_name }}</td>
+            <td>
+                {% for perm in item.permissions %}
+                    <span class="badge bg-info text-dark me-1">{{ perm }}</span>
+                {% empty %}
+                    <span class="text-muted">No Permissions</span>
+                {% endfor %}
+            </td>
+            <td><span class="badges bg-lightgreen">{{ item.status }}</span></td>
+            <td class="text-end">
+                <a class="me-3" href="#">
+                    <img src="{% static 'assets/img/icons/edit.svg' %}" alt="edit">
+                </a>
+
+                <a class="me-3 confirm-text" href="{% url 'delete_role' item.role_id %}" onclick="return confirm('Are you sure you want to delete this role?');">
+                    <img src="{% static 'assets/img/icons/delete.svg' %}" alt="delete">
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" class="text-center">No roles with permissions found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+ {% endcomment %}
+
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+{% endblock %}

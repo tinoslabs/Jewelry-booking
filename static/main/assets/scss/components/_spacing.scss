@@ -1,0 +1,37 @@
+
+/*------- short classes start -------*/
+.section-padding {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    // responsive
+    @media #{$sm-device} {
+        padding-top: 63px;
+        padding-bottom: 63px;
+    }
+}
+.mb-30 {
+    margin-bottom: 30px;
+}
+.mt-20 {
+    margin-top: 20px;
+}
+.mb-20 {
+    margin-bottom: 20px;
+}
+.mt-30 {
+    margin-top: 30px;
+}
+.mtn-20 {
+    margin-top: -20px;
+}
+.mbn-30 {
+    margin-bottom: -30px;
+}
+.mtn-30 {
+    margin-top: -30px;
+}
+.ptb-30 {
+    padding: 30px 0;
+}
+
+/*------- short classes end -------*/

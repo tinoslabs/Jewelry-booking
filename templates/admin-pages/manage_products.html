@@ -1,0 +1,13 @@
+<h3>Manage Products</h3>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Add</button>
+</form>
+
+<h4>All Products</h4>
+<ul>
+  {% for product in products %}
+    <li>{{ product.name }} - {{ product.price }}</li>
+  {% endfor %}
+</ul>

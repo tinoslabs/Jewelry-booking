@@ -1,0 +1,293 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+    <main>
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrap">
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home"></i></a></li>
+                                    <li class="breadcrumb-item"><a href="shop.html">shop</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">checkout</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+
+        <!-- checkout main wrapper start -->
+        <div class="checkout-page-wrapper section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Checkout Login Coupon Accordion Start -->
+                        <div class="checkoutaccordion" id="checkOutAccordion">
+                            {% comment %} <div class="card">
+                                <h6>Returning Customer? <span data-toggle="collapse" data-target="#logInaccordion">Click
+                                            Here To Login</span></h6>
+                                <div id="logInaccordion" class="collapse" data-parent="#checkOutAccordion">
+                                    <div class="card-body">
+                                        <p>If you have shopped with us before, please enter your details in the boxes
+                                            below. If you are a new customer, please proceed to the Billing &amp;
+                                            Shipping section.</p>
+                                        <div class="login-reg-form-wrap mt-20">
+                                            <div class="row">
+                                                <div class="col-lg-7 m-auto">
+                                                    <form action="#" method="post">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="single-input-item">
+                                                                    <input type="email" placeholder="Enter your Email" required />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <div class="single-input-item">
+                                                                    <input type="password" placeholder="Enter your Password" required />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="single-input-item">
+                                                            <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
+                                                                <div class="remember-meta">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input" id="rememberMe" required />
+                                                                        <label class="custom-control-label" for="rememberMe">Remember
+                                                                            Me</label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <a href="#" class="forget-pwd">Forget Password?</a>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="single-input-item">
+                                                            <button class="btn btn-sqr">Login</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> {% endcomment %}
+
+                            {% comment %} <div class="card">
+                                <h6>Have A Coupon? <span data-toggle="collapse" data-target="#couponaccordion">Click
+                                            Here To Enter Your Code</span></h6>
+                                <div id="couponaccordion" class="collapse" data-parent="#checkOutAccordion">
+                                    <div class="card-body">
+                                        <div class="cart-update-option">
+                                            <div class="apply-coupon-wrapper">
+                                                <form action="#" method="post" class=" d-block d-md-flex">
+                                                    <input type="text" placeholder="Enter Your Coupon Code" required />
+                                                    <button class="btn btn-sqr">Apply Coupon</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> {% endcomment %}
+                        </div>
+                        <!-- Checkout Login Coupon Accordion End -->
+                    </div>
+                </div>
+
+                 
+                
+                <form method="POST" action="{% url 'checkout' %}">
+                        {% csrf_token %}
+                        <div class="row">
+                            <!-- Billing Details -->
+                            <div class="col-lg-6">
+                                <div class="checkout-billing-details-wrap">
+                                    <h5 class="checkout-title">Billing Details</h5>
+                                    <div class="billing-form-wrap">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="single-input-item">
+                                                    <label for="f_name" class="required">First Name</label>
+                                                    <input type="text" id="f_name" placeholder="First Name" name="first_name" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="single-input-item">
+                                                    <label for="l_name" class="required">Last Name</label>
+                                                    <input type="text" id="l_name" placeholder="Last Name" name="last_name" required />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="single-input-item">
+                                            <label for="email" class="required">Email Address</label>
+                                            <input type="email" id="email" placeholder="Email Address" name="email" required />
+                                        </div>
+
+                                        <div class="single-input-item">
+                                            <label for="com-name">Company Name</label>
+                                            <input type="text" id="com-name" placeholder="Company Name" name="company_name" />
+                                        </div>
+
+                                        <div class="single-input-item">
+                                            <label for="state" class="required">State</label>
+                                            <select id="state" name="state" required>
+                                                <option value="">-- Select State --</option>
+                                                <option value="Kerala">Kerala</option>
+                                                <option value="Karnataka">Karnataka</option>
+                                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="single-input-item">
+                                            <label for="street-address1" class="required mt-20">Street Address</label>
+                                            <input type="text" id="street-address1" placeholder="Street address Line 1" name="street_address1" required />
+                                        </div>
+
+                                        <div class="single-input-item">
+                                            <input type="text" id="street-address2" placeholder="Street address Line 2 (Optional)" name="street_address2" />
+                                        </div>
+
+                                        <div class="single-input-item">
+                                            <label for="city" class="required">Town / City</label>
+                                            <input type="text" id="city" placeholder="Town / City" name="city" required />
+                                        </div>
+
+                                        <div class="single-input-item">
+                                            <label for="division">State / Division</label>
+                                            <input type="text" id="division" placeholder="State / Division" name="division" />
+                                        </div>
+
+                                        <div class="single-input-item">
+                                            <label for="postcode" class="required">Postcode / ZIP</label>
+                                            <input type="text" id="postcode" placeholder="Postcode / ZIP" name="postcode" required />
+                                        </div>
+
+                                        <div class="single-input-item">
+                                            <label for="phone">Phone</label>
+                                            <input type="text" id="phone" name="phone" placeholder="Phone" />
+                                        </div>
+
+                                        <div class="single-input-item">
+                                            <label for="order_note">Order Note</label>
+                                            <textarea name="order_note" id="order_note" cols="30" rows="3" placeholder="Notes about your order"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Order Summary -->
+                            <div class="col-lg-6">
+                                <div class="order-summary-details">
+                                    <h5 class="checkout-title">Your Order Summary</h5>
+                                    <div class="order-summary-content">
+                                        <div class="order-summary-table table-responsive text-center">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Products</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for item in cart_items %}
+                                                    <tr>
+                                                        <td>
+                                                            <a href="{% url 'product_detail' item.product.id %}">
+                                                                {{ item.product.name }} <strong> × {{ item.quantity }}</strong>
+                                                            </a>
+                                                        </td>
+                                                        <td>₹{{ item.subtotal }}</td>
+                                                    </tr>
+                                                    {% empty %}
+                                                    <tr>
+                                                        <td colspan="2">Your cart is empty</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td>Sub Total</td>
+                                                        <td><strong>₹{{ subtotal }}</strong></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Shipping</td>
+                                                        <td class="d-flex justify-content-center">
+                                                            <ul class="shipping-type">
+                                                                <li>
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" id="flatrate" name="shipping" value="70.00" class="custom-control-input" checked />
+                                                                        <label class="custom-control-label" for="flatrate">Flat Rate: ₹70.00</label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" id="freeshipping" name="shipping" value="0.00" class="custom-control-input" />
+                                                                        <label class="custom-control-label" for="freeshipping">Free Shipping</label>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total Amount</td>
+                                                        <td><strong>₹{{ total_amount }}</strong></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+
+                                        <!-- Payment Method -->
+                                        <div class="order-payment-method">
+                                            {% for method_value, method_label in form.payment_method.field.choices %}
+                                            <div class="single-payment-method {% if forloop.first %}show{% endif %}">
+                                                <div class="payment-method-name">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="{{ method_value }}" name="payment_method" value="{{ method_value }}" class="custom-control-input" {% if forloop.first %}checked{% endif %} />
+                                                        <label class="custom-control-label" for="{{ method_value }}">{{ method_label }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+
+                                            <div class="summary-footer-area">
+                                                <div class="custom-control custom-checkbox mb-20">
+                                                    <input type="checkbox" class="custom-control-input" id="terms" required />
+                                                    <label class="custom-control-label" for="terms">
+                                                        I have read and agree to the website <a href="">terms and conditions</a>.
+                                                    </label>
+                                                </div>
+                                                <button type="submit" class="btn btn-sqr">Place Order</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <!-- Order Summary Details -->
+                </div>   
+
+            </div>
+        </div>
+        <!-- checkout main wrapper end -->
+    </main>
+
+    <!-- Scroll to top start -->
+    <div class="scroll-top not-visible">
+        <i class="fa fa-angle-up"></i>
+    </div>
+
+
+{% endblock %}

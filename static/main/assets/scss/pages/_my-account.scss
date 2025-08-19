@@ -1,0 +1,119 @@
+/*-------- Start My Account Page Wrapper --------*/
+.myaccount-tab-menu {
+    flex-direction: column;
+
+    a {
+        border: 1px solid $bdr-color;
+        border-bottom: none;
+        color: $white;
+        font-weight: 400;
+        font-size: 15px;
+        display: block;
+        padding: 10px 15px;
+        text-transform: capitalize;
+
+        &:last-child {
+            border-bottom: 1px solid $bdr-color;
+        }
+
+        &:hover,
+        &.active {
+            background-color: $theme-color;
+            border-color: $theme-color;
+            color: $white;
+        }
+
+        i.fa {
+            font-size: 14px;
+            text-align: center;
+            width: 25px;
+        }
+    }
+}
+
+#myaccountContent {
+    // Responsive
+    @media #{$sm-device} {
+        margin-top: 30px;
+    }
+}
+
+.myaccount-content {
+    border: 1px solid $bdr-color;
+    padding: 30px;
+
+    @media #{$xs-device} {
+        padding: 20px 15px;
+    }
+
+    form {
+        margin-top: -20px;
+    }
+
+    h5 {
+        border-bottom: 1px dashed $bdr-color;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+    }
+
+    .welcome {
+        a {
+            color: $white;
+
+            &:hover {
+                color: $theme-color;
+            }
+        }
+
+        strong {
+            font-weight: 500;
+            color: $theme-color;
+        }
+    }
+    fieldset {
+        margin-top: 20px;
+        & legend {
+            color: $white;
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: 400;
+            border-bottom: 1px dashed $bdr-color;
+        }
+    }
+}
+
+.myaccount-table {
+    white-space: nowrap;
+    font-size: 14px;
+
+    table,
+    .table {
+        th {
+            color: $white;
+            padding: 10px;
+            font-weight: 400;
+            background-color: $bg-dark-soft;
+            border-color: $bdr-color;
+            border-bottom: 0;
+        }
+
+        td {
+            color: $paragraph;
+            padding: 10px;
+            vertical-align: middle;
+            border-color: $bdr-color;
+        }
+    }
+}
+
+.saved-message {
+    background-color: $bg-dark-soft;
+    border-top: 3px solid $theme-color;
+    border-radius: 5px 5px 0 0;
+    font-weight: 400;
+    font-size: 15px;
+    color: $paragraph;
+    padding: 20px;
+}
+
+/*-------- Start My Account Page Wrapper --------*/

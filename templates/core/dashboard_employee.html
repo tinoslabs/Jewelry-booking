@@ -1,0 +1,7 @@
+<h1>Employee Dashboard</h1>
+<p>Your Role: {{ emp_role }}</p>
+{% if emp_role == 'inventory' %}
+    <p>Inventory Access</p>
+{% elif emp_role == 'orders' %}
+    <p>Order Handling Access</p>
+{% endif %}

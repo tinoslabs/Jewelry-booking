@@ -1,0 +1,307 @@
+/*------ hero slider area css start ------*/
+/*-------------------------
+02. Slider area
+--------------------------*/
+.hero-slider-item {
+    height: 530px;
+    display: flex;
+    align-items: center;
+
+    // responsive
+    @media #{$xxl-device} {
+        height: 670px;
+    }
+    @media #{$md-device, $sm-device} {
+        height: 400px;
+    }
+    @media #{$xs-device} {
+        height: 350px;
+    }
+}
+
+.hero-style-five {
+    .hero-slider-item {
+        height: 800px;
+
+        // responsive
+        @media #{$xlmax-device, $lg-device} {
+            height: 530px;
+        }
+
+        @media #{$md-device, $sm-device} {
+            height: 400px;
+        }
+
+        @media #{$xs-device} {
+            height: 350px;
+        }
+    }
+}
+
+.hero-slider-content {
+
+    // responsive
+    @media #{$sm-device} {
+        padding-right: 150px;
+    }
+
+    @media #{$xs-device} {
+        padding-right: 90px;
+    }
+
+    @media #{$xxs-device} {
+        padding-right: 0;
+    }
+
+    .slide {
+        &-title {
+            color: $white;
+            font-size: 60px;
+            font-weight: normal;
+            line-height: 1;
+
+            span {
+                display: block;
+            }
+
+            // responsive
+            @media #{$md-device} {
+                font-size: 50px;
+            }
+
+            @media #{$sm-device} {
+                font-size: 40px;
+                line-height: 1.2;
+            }
+
+            @media #{$xs-device} {
+                font-size: 35px;
+            }
+
+            @media #{$xxs-device} {
+                font-size: 30px;
+            }
+        }
+
+        &-desc {
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 1.3;
+            color: $white;
+            padding-top: 20px;
+
+            @media #{$xs-device} {
+                padding-top: 10px;
+            }
+        }
+    }
+}
+
+.btn-hero {
+    color: $white;
+    font-size: 15px;
+    line-height: 1;
+    padding: 14px 30px;
+    display: inline-block;
+    border-radius: 50px;
+    background-color: $theme-color;
+    margin-top: 38px;
+
+    // responsive
+    @media #{$xs-device} {
+        margin-top: 25px;
+    }
+
+    &:hover {
+        color: $white;
+        background-color: $bg-dark-soft;
+    }
+}
+
+/* .hero-overlay {
+    position: relative;
+
+    &:before {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        content: '';
+        position: absolute;
+        background-color: rgba($white, 0.7);
+        display: none;
+
+        @media #{$sm-device} {
+            display: block;
+        }
+    }
+} */
+
+/*------ hero slider area css end ------*/
+
+// slider text animation
+.slick-active {
+    .hero-slider-content {
+        &.slide-1 {
+            h2 {
+                animation: bounceIn 2s linear alternate;
+            }
+
+            h4 {
+                animation: zoomIn 1s linear alternate;
+            }
+
+            a {
+                animation: slideInUp 0.5s linear alternate;
+            }
+        }
+
+        &.slide-2 {
+            h2 {
+                animation: bounceIn 1.5s linear alternate;
+            }
+
+            h4 {
+                animation: fadeInLeft 1s linear alternate;
+            }
+
+            a {
+                animation: slideInUp 0.5s linear alternate;
+            }
+        }
+
+        &.slide-3 {
+            h2 {
+                animation: fadeInUp 1000ms linear alternate;
+            }
+
+            h4 {
+                animation: bounceIn 600ms linear alternate;
+            }
+
+            a {
+                animation: fadeInUp 1400ms linear alternate;
+            }
+        }
+    }
+}
+
+// slider style for home 6
+.slider-item {
+    position: relative;
+    overflow: hidden;
+    &:before {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        content: "";
+        position: absolute;
+        background-color: $black;
+        transition: 0.4s;
+        pointer-events: none;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 1;
+        transition: 0.4s;
+        // responsive
+        @media #{$sm-device} {
+            opacity: 0.6;
+            visibility: visible;
+        }
+    }
+
+    &:hover {
+        &:before {
+            opacity: 0.6;
+            visibility: visible;
+        }
+
+        .slider-thumb {
+            img {
+                transform: scale(1.1);
+            }
+        }
+
+        .slider-item-content {
+            transform: translateY(-50%) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .slider-thumb {
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.slider-item-content {
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+    text-align: center;
+    padding: 0 30px;
+    z-index: 2;
+    transition: 0.4s;
+    transform: translateY(-50%) scale(.8);
+    opacity: 0;
+    visibility: hidden;
+    // responsive
+    @media #{$sm-device} {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-50%) scale(1);
+    }
+
+    h2 {
+        color: $white;
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.1;
+        padding-bottom: 6px;
+        overflow-wrap: break-word;
+        text-transform: uppercase;
+        font-family: $heading-font;
+
+        // responsive
+        @media #{$lg-device} {
+            font-size: 30px;
+        }
+
+        @media #{$xxs-device} {
+            font-size: 26px;
+        }
+    }
+
+    h3 {
+        color: $white;
+        font-size: 30px;
+        font-weight: 400;
+        line-height: 1.2;
+        text-transform: capitalize;
+        font-family: $heading-font;
+
+        // responsive
+        @media #{$xxs-device} {
+            font-size: 22px;
+        }
+    }
+
+    .btn-text {
+        margin-top: 15px;
+        color: $white;
+        &:before {
+            background-color: $white;
+        }
+        &:hover {
+            color: $theme-color;
+            &:before {
+                background-color: $theme-color;
+            }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+/*------ service policy start ------*/
+.policy-block {
+    border-bottom: 1px solid $bdr-color;
+}
+.policy {
+    &-item {
+        display: flex;
+        margin-top: 30px;
+        margin-bottom: -3px;
+        // responsive
+        @media #{$sm-device} {
+            margin-bottom: -6px;
+        }
+        @media #{$xs-device} {
+            display: block;
+            text-align: center;
+        }
+    }
+    &-icon {
+        font-size: 30px;
+        line-height: 1;
+        color: $theme-color;
+        padding-right: 16px;
+        // responsive
+        @media #{$lg-device} {
+            padding-right: 12px;
+        }
+        @media #{$xs-device} {
+            padding-right: 0;
+            margin-bottom: 10px;
+        }
+    }
+    &-content {
+        p {
+            color: $paragraph;
+            padding-top: 9px;
+        }
+    }
+}
+/*------ service policy end ------*/

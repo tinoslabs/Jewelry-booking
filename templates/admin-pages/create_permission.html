@@ -1,0 +1,179 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="page-wrapper">
+<div class="content">
+<div class="page-header">
+<div class="page-title">
+<h4>Create Permission</h4>
+<h6>Manage Create Permissions</h6>
+</div>
+</div>
+
+{% comment %} <form method="POST">
+  {% csrf_token %}
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="form-group">
+            <label>Role</label>
+            <select name="role" class="form-control select" required>
+              <option value="">Choose Role</option>
+              {% for value, label in roles %}
+                <option value="{{ value }}">{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="col-lg-9 col-sm-12">
+            <div class="form-group">
+            <label>Role Name</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+
+        <div class="col-12 mb-3">
+          <label class="inputcheck">
+            Select All
+            <input type="checkbox" id="select-all">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="productdetails product-respon">
+            <ul>
+              {% for module, perms in permissions_dict.items %}
+              <li>
+                <h4>{{ module }}</h4>
+                <div class="input-checkset">
+                  <ul>
+                    {% for perm in perms %}
+                    <li>
+                      <label class="inputcheck">{{ perm }}
+                        <input type="checkbox" name="permissions" value="{{ module }} - {{ perm }}">
+                        <span class="checkmark"></span>
+                      </label>
+                    </li>
+                    {% endfor %}
+                    <li>
+                      <label class="inputcheck">Select All
+                        <input type="checkbox" class="select-module">
+                        <span class="checkmark"></span>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-12 text-end">
+          <button type="submit" class="btn btn-primary">Save Permissions</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form> {% endcomment %}
+<form method="POST">
+  {% csrf_token %}
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="form-group">
+            <label>Role</label>
+            <select name="role" class="form-control select" required>
+              <option value="">Choose Role</option>
+              {% for value, label in roles %}
+                <option value="{{ value }}">{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12 mb-3">
+          <label class="inputcheck">
+            Select All
+            <input type="checkbox" id="select-all">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="productdetails product-respon">
+            <ul>
+              {% for module, perms in permissions_dict.items %}
+              <li>
+                <h4>{{ module }}</h4>
+                <div class="input-checkset">
+                  <ul>
+                    {% for perm in perms %}
+                    <li>
+                      <label class="inputcheck">{{ perm }}
+                        <input type="checkbox" name="permissions" value="{{ module }} - {{ perm }}">
+                        <span class="checkmark"></span>
+                      </label>
+                    </li>
+                    {% endfor %}
+                    <li>
+                      <label class="inputcheck">Select All
+                        <input type="checkbox" class="select-module">
+                        <span class="checkmark"></span>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-12 text-end">
+          <button type="submit" class="btn btn-primary">Save Permissions</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+
+</div>
+</div>
+</div>
+
+<!-- JavaScript to handle Select All -->
+<script>
+  // Global select all
+  document.getElementById('select-all').addEventListener('change', function () {
+    const checked = this.checked;
+    document.querySelectorAll('input[type="checkbox"][name="permissions"]').forEach(cb => cb.checked = checked);
+    document.querySelectorAll('.select-module').forEach(cb => cb.checked = checked);
+  });
+
+  // Per-module select all
+  document.querySelectorAll('.select-module').forEach(moduleCheckbox => {
+    moduleCheckbox.addEventListener('change', function () {
+      const parentUl = this.closest('ul');
+      const checkboxes = parentUl.querySelectorAll('input[type="checkbox"][name="permissions"]');
+      checkboxes.forEach(cb => cb.checked = this.checked);
+    });
+  });
+</script>
+{% endblock %}

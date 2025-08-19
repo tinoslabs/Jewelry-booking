@@ -1,0 +1,71 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block content %}
+<div class="page-wrapper">
+<div class="content">
+<div class="page-header">
+    <div class="page-title">
+        <h4>Edit Subcategory</h4>
+        <h6>Update subcategory details</h6>
+    </div>
+</div>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+
+                <!-- Category Dropdown -->
+                <div class="col-lg-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Category Name</label>
+                        <select name="category" class="select form-control">
+                            <option value="">Choose Category</option>
+                            {% for category in categories %}
+                                <option value="{{ category.id }}" {% if subcategory.category.id == category.id %}selected{% endif %}>{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Subcategory Name -->
+                <div class="col-lg-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Subcategory Name</label>
+                        <input type="text" name="name" class="form-control" value="{{ subcategory.name }}" placeholder="Enter Subcategory Name">
+                    </div>
+                </div>
+
+                <!-- Image Upload -->
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Product Image</label>
+                        <div class="image-upload">
+                            <input type="file" name="image">
+                            <div class="image-uploads">
+                                <img src="{% static 'assets/img/icons/upload.svg' %}" alt="img">
+                                <h4>Drag and drop a file to upload</h4>
+                            </div>
+                            {% if subcategory.image %}
+                                <p>Current Image:</p>
+                                <img src="{{ subcategory.image.url }}" alt="Current Image" style="max-height: 100px;">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="col-lg-12">
+                    <button type="submit" class="btn btn-submit me-2">Update</button>
+                    <a href="{% url 'view_subcategories' %}" class="btn btn-cancel">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+</div>
+</div>
+</div>
+{% endblock %}
