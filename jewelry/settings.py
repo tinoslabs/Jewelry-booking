@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-gev)24y1tys+$qy8+jh+0_0q4%e3x)puz$9kj@9c$cq=7f5*ki
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['jewelry-booking.onrender.com', '127.0.0.1', 'localhost']
 
 
 INSTALLED_APPS = [
